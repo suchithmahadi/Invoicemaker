@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.adity.invoicemaker.invoice_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,8 +29,8 @@
         android:layout_alignRight="@+id/textView3"
         android:layout_alignEnd="@+id/textView3"
         android:layout_marginBottom="54dp"
-        android:layout_alignLeft="@+id/button"
-        android:layout_alignStart="@+id/button" />
+        android:layout_alignLeft="@+id/createinvoice"
+        android:layout_alignStart="@+id/createinvoice" />
 
 
     <ImageView
@@ -87,4 +93,6 @@
         android:textSize="16sp"
         android:textStyle="bold" />
 
-</RelativeLayout>
+    </RelativeLayout>
+
+</FrameLayout>

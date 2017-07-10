@@ -1,8 +1,10 @@
 package com.example.adity.invoicemaker;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -17,6 +19,7 @@ import android.widget.Button;
 public class NavigationDrawer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    android.support.v4.app.Fragment fragment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,13 +34,11 @@ public class NavigationDrawer extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        Button invoice=(Button)findViewById(R.id.createinvoice);
-        invoice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(NavigationDrawer.this,give_details.class));
-            }
-        });
+        fragment=new invoice_fragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,fragment).commit();
+
+
+
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -81,18 +82,39 @@ public class NavigationDrawer extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.profile)
+        {
+            fragment=new profile();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,fragment).commit();
+        }
 
-        } else if (id == R.id.nav_slideshow) {
+        else if (id == R.id.invoice) {
+            fragment=new invoice_fragment();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_layout,fragment).commit();
 
-        } else if (id == R.id.nav_manage) {
+        }
 
-        } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_send) {
+        else if (id == R.id.vendors) {
+            fragment =new vendors_fragment();
+        }
 
+
+
+        else if (id == R.id.contactus) {
+                fragment=new contact_fragment();
+        }
+
+
+        else if (id == R.id.referp) {
+            fragment =new referTofriend_fragment();
+        }
+
+
+        if (fragment != null) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.fragment_layout, fragment);
+            ft.commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

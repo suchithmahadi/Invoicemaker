@@ -3,29 +3,25 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/profile"
             android:icon="@drawable/ic_menu_camera"
             android:title="Profile" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/invoice"
             android:icon="@drawable/invoice"
+            android:checked="true"
             android:title="Invoices" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/vendors"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Vendors" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Account" />
-
 
     <item android:title="Contact Us"
-        android:id="@+id/nav_share"
+        android:id="@+id/contactus"
         android:icon="@drawable/ic_menu_share" />
 
     <item
-        android:id="@+id/nav_send"
+        android:id="@+id/referp"
         android:icon="@drawable/ic_menu_send"
         android:title="Refer to Friend" />
     </group>    </menu>

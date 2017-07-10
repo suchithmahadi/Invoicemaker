@@ -3,7 +3,8 @@
     package="com.example.adity.invoicemaker">
 
 
-
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission-sdk-23 android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -30,6 +31,21 @@
         <activity android:name=".NavigationDrawer"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".BankDetails"
+            android:label="Details" />
+        <activity
+            android:name=".AddItem"
+            android:label="Add Item" />
+
+        <activty
+            android:name=".InvoiceGen"
+            android:label="Invoice" />
+
+        <activity android:name=".InvoiceGenerate" />
+        <activity android:name=".ClientDetails"></activity>
+
 
 
     </application>

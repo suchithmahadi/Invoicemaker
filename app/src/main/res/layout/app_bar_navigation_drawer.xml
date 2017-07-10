@@ -19,6 +19,14 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/invoice" />
+   <FrameLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:layout_marginTop="?attr/actionBarSize"
+       android:id="@+id/fragment_layout">
+
+
+
+   </FrameLayout>
 
 </android.support.design.widget.CoordinatorLayout>

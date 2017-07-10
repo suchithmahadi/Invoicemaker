@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser user=mAuth.getCurrentUser();
         if(user!=null)
         {
-            startActivity(new Intent(MainActivity.this,give_details.class));
+            startActivity(new Intent(MainActivity.this,NavigationDrawer.class));
         }
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
