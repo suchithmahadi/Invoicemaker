@@ -41,6 +41,7 @@ public class profile extends Fragment {
     TextView name,email;
     ImageView iv;
     ListView lv;
+
     String[] items={"Personal Details","Payment Details","Verify Email","Change Password","Change Email Address","Logout"};
     Integer[] imgid={R.drawable.personal,R.drawable.payment,R.drawable.verify,R.drawable.password ,R.drawable.resetemail,R.drawable.lo,};  FirebaseAuth auth = FirebaseAuth.getInstance();
     final FirebaseUser user=auth.getCurrentUser();
