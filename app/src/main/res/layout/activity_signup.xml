@@ -61,7 +61,6 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="2dp"
         android:textColorHighlight="#ffffff"
-        android:inputType="textPassword"
         android:hint="Contact Person"/>
 
     <EditText
@@ -73,6 +72,7 @@
         android:textSize="15sp"
         android:layout_marginRight="20dp"
         android:id="@+id/num"
+        android:maxLength="10"
         android:layout_marginLeft="20dp"
         android:textColorHighlight="#ffffff"
 

@@ -2,8 +2,10 @@ package com.example.adity.invoicemaker;
 
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,9 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -29,17 +28,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  * Created by adity on 7/10/2017.
  */
 
 public class profile extends Fragment {
-
+    ArrayList<HashMap<String,String>> INTERESTS;
+    ProgressDialog pd;
     TextView name,email;
     ImageView iv;
     ListView lv;
     String[] items={"Personal Details","Payment Details","Verify Email","Change Password","Change Email Address","Logout"};
-    FirebaseAuth auth = FirebaseAuth.getInstance();
+    Integer[] imgid={R.drawable.personal,R.drawable.payment,R.drawable.verify,R.drawable.password ,R.drawable.resetemail,R.drawable.lo,};  FirebaseAuth auth = FirebaseAuth.getInstance();
     final FirebaseUser user=auth.getCurrentUser();
 
 
@@ -62,12 +65,17 @@ public class profile extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle("Profile");
 
+        INTERESTS=new ArrayList<>();
 
+        pd=new ProgressDialog(getActivity());
+
+        lv=(ListView)getActivity().findViewById(R.id.lv);
+    CustomListAdapter adapter=new CustomListAdapter(getActivity(),items,imgid);
+        lv.setAdapter(adapter);
         name=(TextView)getActivity().findViewById(R.id.name1);
         email=(TextView)getActivity().findViewById(R.id.email1);
 
         iv=(ImageView)getActivity().findViewById(R.id.pic);
-
         char let= FirebaseAuth.getInstance().getCurrentUser().getDisplayName().trim().charAt(0);
         String letter=String.valueOf(let);
 
@@ -91,10 +99,8 @@ public class profile extends Fragment {
 
         email.setText(""+user.getEmail());
 
-        lv=(ListView)getActivity().findViewById(R.id.lv);
 
-        ArrayAdapter adapter=new ArrayAdapter(getActivity(),android.R.layout.simple_list_item_1,items);
-        lv.setAdapter(adapter);
+
 
 
         iv.setOnClickListener(new View.OnClickListener() {
@@ -120,8 +126,24 @@ public class profile extends Fragment {
                 }
                 else if(position==4)
                 {
-                    auth.signOut();
-                    startActivity(new Intent(getActivity(),MainActivity.class));
+                   // changeemail();
+                }
+                else if(position==5)
+                {
+                    pd.setMessage("Logging Out");
+                    pd.show();
+                    new Handler().postDelayed(new Runnable() {
+
+                        @Override
+                        public void run() {
+                             pd.hide();
+                            auth.signOut();
+                            startActivity(new Intent(getActivity(),MainActivity.class));
+                            getActivity().finish();
+
+                        }
+                    }, 3000);
+
                 }
 
             }
@@ -160,12 +182,18 @@ public class profile extends Fragment {
 
     public void verifyEmail()
     {
+        pd.setMessage("sending Email");
+        pd.show();
+
+
+
 
 
         user.sendEmailVerification().addOnCompleteListener(getActivity(), new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
+                    pd.hide();
                     Toast.makeText(getActivity(),
                             "Verification email sent to " + user.getEmail(),
                             Toast.LENGTH_SHORT).show();
@@ -188,11 +216,14 @@ public class profile extends Fragment {
 
     public void resetPassword()
     {
+        pd.setMessage("Sending Email");
+        pd.show();
         auth.sendPasswordResetEmail(user.getEmail())
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
+                            pd.hide();
                             Toast.makeText(getActivity(), "Email Sent", Toast.LENGTH_SHORT).show();
 
                         }

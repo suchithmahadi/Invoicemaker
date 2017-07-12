@@ -12,4 +12,24 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="invoice">
+        <item name="1"><b>For Intra state</b> \n goods traveling within a state </item>
+        <item name="2"><b>For Inter state </b>\n goods traveling between states</item>
+        <item name="3"><b>For Export</b></item>
+        <item name="4"><b>For Exempt Supply </b>\n goods or services or both which attracts nil rate of tax</item>
+        <item name="5"><b>For Sales Returns</b></item>
+        <item name="6"><b>For Charging Extra</b></item>
+        <item name="7"><b>Receipt Voucher</b></item>
+        <item name="8"><b>Refund Voucher</b></item>
+        <item name="9"><b>Payment Voucher</b></item>
+        <item name="10"><b>Invoice for Rcm</b></item>
+
+    </string-array>
+    <string name="post"><b> <h4>Generate a Invoice </h4></b>\n
+    </string>
+    <string name="generate"><h1>Which type of invoice would you like to generate ?</h1></string>
+
+
+
 </resources>

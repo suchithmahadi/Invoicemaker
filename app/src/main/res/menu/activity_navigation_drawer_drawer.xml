@@ -4,7 +4,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/profile"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_action_name"
             android:title="Profile" />
         <item
             android:id="@+id/invoice"
@@ -13,16 +13,16 @@
             android:title="Invoices" />
         <item
             android:id="@+id/vendors"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/vendors"
             android:title="Vendors" />
 
     <item android:title="Contact Us"
         android:id="@+id/contactus"
-        android:icon="@drawable/ic_menu_share" />
+        android:icon="@drawable/ic_action_contactus" />
 
     <item
         android:id="@+id/referp"
-        android:icon="@drawable/ic_menu_send"
+        android:icon="@drawable/refer"
         android:title="Refer to Friend" />
     </group>    </menu>
 

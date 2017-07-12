@@ -123,8 +123,8 @@ public class signup extends AppCompatActivity {
                                             });
                                             pd.setMessage("Successfully Registered");
                                             pd.hide();
-
                                             startActivity(new Intent(signup.this,NavigationDrawer.class));
+                                            finish();
 
                                         }
                                         else {

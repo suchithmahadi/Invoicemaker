@@ -9,10 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -36,13 +34,15 @@ public class MainActivity extends AppCompatActivity {
         forgot=(TextView) findViewById(R.id.forgot);
 
         ActionBar a=getSupportActionBar();
-        a.hide();
+        if(a!=null)
+            a.hide();
 
         pd=new ProgressDialog(this);
        mAuth = FirebaseAuth.getInstance();
         FirebaseUser user=mAuth.getCurrentUser();
         if(user!=null)
         {
+            finish();
             startActivity(new Intent(MainActivity.this,NavigationDrawer.class));
         }
         signin.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +70,8 @@ public class MainActivity extends AppCompatActivity {
                 {
                     pd.setMessage("Logging In");
                     pd.show();
-                    mAuth.signInWithEmailAndPassword(em,pas).addOnCompleteListener(MainActivity.this,new OnCompleteListener<AuthResult>() {
+
+                    mAuth.signInWithEmailAndPassword(em,pas).addOnCompleteListener(MainActivity.this,new OnCompleteListener<AuthResult>(){
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful())
@@ -79,11 +80,15 @@ public class MainActivity extends AppCompatActivity {
                                 Intent i=new Intent(MainActivity.this,NavigationDrawer.class);
                                 //i.putExtra("email",em);
                                 startActivity(i);
+                                finish();
                             }
 
                             else {
                                 pd.hide();
-                                Toast.makeText(MainActivity.this, ""+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+
+                                    Toast.makeText(MainActivity.this, "" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+
+
                             }
 
 
@@ -103,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,signup.class));
+
             }
         });
 

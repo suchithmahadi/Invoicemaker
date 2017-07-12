@@ -39,7 +39,7 @@ public class invoice_fragment extends Fragment {
         invoice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(),InvoiceGenerate.class));
+                startActivity(new Intent(getActivity(),typesofinvoice.class));
             }
         });
 

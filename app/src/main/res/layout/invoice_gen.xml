@@ -3,8 +3,6 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#7fccc4">
@@ -31,13 +29,14 @@
                     android:layout_width="81dp"
                     android:layout_height="wrap_content"
                     android:text="INV000"
+                    android:focusableInTouchMode="true"
                     android:id="@+id/edittext"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="date >"
+                    android:layout_marginRight="16dp"
                     android:id="@+id/textdate"
-                    android:textAlignment="gravity"
                     android:gravity="right"
                     />
 
@@ -65,8 +64,9 @@
                 android:id="@+id/client_details"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
                 android:gravity="right"
-                android:text="____ >" />
+                />
 
         </LinearLayout>
 
@@ -93,6 +93,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"
+                android:layout_marginRight="16dp"
                 android:text=">" />
 
         </LinearLayout>
@@ -119,6 +120,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="₹ 0.00"
+                    android:layout_marginRight="16dp"
                     android:gravity="right"/>
 
             </LinearLayout>
@@ -135,6 +137,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
                     android:gravity="right"
                     android:text="₹ 0.00" />
 
@@ -152,6 +155,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
                     android:gravity="right"
                     android:text="₹ 0.00" />
 
@@ -169,6 +173,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
                     android:gravity="right"
                     android:text="₹ 0.00" />
 
@@ -187,6 +192,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
                     android:gravity="right"
                     android:text="₹ 0.00" />
 
@@ -204,6 +210,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
                     android:gravity="right"
                     android:text="₹ 0.00" />
 
@@ -224,6 +231,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
                     android:gravity="right"
                     android:textColor="#ffff"
                     android:text="₹ 0.00" />
@@ -257,6 +265,7 @@
                     android:id="@+id/bank"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
                     android:gravity="right"
                     android:text=">" />
 
@@ -274,6 +283,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
                     android:gravity="right"
                     android:hint="Due on receipt" />
 
@@ -340,22 +350,9 @@
                 android:layout_height="wrap_content"
                 android:text="Save"
                 android:padding="5dp"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:textColor="@color/colorPrimary"/>
+                />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Delete"
-                android:gravity="center"
-                android:padding="5dp"
-                android:textStyle="bold"
-                android:textColor="#f10202"/>
-
-
-        </LinearLayout>
-
-
-    </RelativeLayout>
-</ScrollView>
+ 
