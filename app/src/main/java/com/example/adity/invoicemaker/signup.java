@@ -38,7 +38,6 @@ public class signup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-
         fn = (EditText) findViewById(R.id.fn);
         email = (EditText) findViewById(R.id.enteremail);
         pass = (EditText) findViewById(R.id.enterpass);
@@ -109,9 +108,9 @@ public class signup extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         if(task.isSuccessful())
                                         {
-                                            db = FirebaseDatabase.getInstance().getReference(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                                            db = FirebaseDatabase.getInstance().getReference("Users");
 
-                                            db.child("details").push().setValue(mp, new DatabaseReference.CompletionListener() {
+                                            db.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(mp, new DatabaseReference.CompletionListener() {
                                                 @Override
                                                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                                                     if (databaseError == null) {
