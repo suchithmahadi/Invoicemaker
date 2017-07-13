@@ -37,6 +37,7 @@
                 android:background="@android:color/transparent"
                 android:layout_height="wrap_content"
                 android:hint="Name"
+                android:id="@+id/clientname"
                 android:padding="5dp"
                 android:textSize="15dp"
                 android:gravity="right"/>
@@ -65,6 +66,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Phone"
                 android:padding="5dp"
+                android:id="@+id/clientphone"
                 android:textSize="15dp"
                 android:gravity="right"/>
 

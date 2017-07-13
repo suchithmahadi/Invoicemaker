@@ -9,5 +9,7 @@ public class ClientDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client_details);
+
+        getSupportActionBar().hide();
     }
 }

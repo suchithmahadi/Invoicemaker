@@ -9,11 +9,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
 public class InvoiceGenerate extends AppCompatActivity {
  static TextView dateString;
+    String bank,ifsccode,accholder,accno;
+    String description,HSNcode,unitcost,quantity,amount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +28,7 @@ public class InvoiceGenerate extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(getApplicationContext(),BankDetails.class);
-                startActivity(intent);
+                startActivityForResult(intent,1);
             }
         });
         TextView addItem=(TextView)findViewById(R.id.addItem);
@@ -32,7 +36,7 @@ public class InvoiceGenerate extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(getApplicationContext(),AddItem.class);
-                startActivity(intent);
+                startActivityForResult(intent,2);
 
             }
         });
@@ -42,7 +46,7 @@ public class InvoiceGenerate extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(getApplicationContext(), com.example.adity.invoicemaker.ClientDetails.class);
-                startActivity(intent);
+                startActivityForResult(intent,3);
 
             }
         });
@@ -102,4 +106,30 @@ public class InvoiceGenerate extends AppCompatActivity {
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getFragmentManager(), "datePicker");
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (resultCode == 1) {
+            bank=data.getStringExtra("bank_name");
+            ifsccode=data.getStringExtra("ifsc_code");
+            accholder=data.getStringExtra("account_holder");
+            accno=data.getStringExtra("account_number");
+            }
+        if (resultCode == 2) {
+            description= data.getStringExtra("description");
+            HSNcode =data.getStringExtra("HSNcode");
+            unitcost = data.getStringExtra("unitcost");
+            quantity =data.getStringExtra("quantity");
+            amount = data.getStringExtra("amount");
+            Toast.makeText(this, "hello", Toast.LENGTH_SHORT).show();
+
+
+        }
+        if (resultCode == 3) {
+        }
+        }
     }
+
+
+

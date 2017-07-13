@@ -25,6 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:hint="Description"
+                android:id="@+id/description"
                 android:inputType="text"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -34,6 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:hint="HSNCode"
+                android:id="@+id/HSNcode"
                 android:inputType="text"
                 android:textSize="14sp"
                 android:textStyle="bold" />
@@ -133,6 +135,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="SAVE"
+    android:id="@+id/save"
     android:layout_gravity="center_horizontal|center_vertical"
     android:background="@drawable/button"
     android:textColor="#fff"
