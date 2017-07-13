@@ -49,6 +49,7 @@
             android:parentActivityName=".NavigationDrawer">
 
         </activity>
+        <activity android:name=".OTPCheck"></activity>
     </application>
 
 </manifest>
