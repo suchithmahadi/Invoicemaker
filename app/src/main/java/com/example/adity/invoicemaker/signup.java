@@ -89,7 +89,7 @@ public class signup extends AppCompatActivity {
                     pd.show();
 
 
-                    mAuth.createUserWithEmailAndPassword(em, pwd).addOnCompleteListener(signup.this, new OnCompleteListener<AuthResult>() {
+                   mAuth.createUserWithEmailAndPassword(em, pwd).addOnCompleteListener(signup.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
@@ -113,16 +113,16 @@ public class signup extends AppCompatActivity {
                                             db.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(mp, new DatabaseReference.CompletionListener() {
                                                 @Override
                                                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                                                    if (databaseError == null) {
+                                                    /*if (databaseError == null) {
                                                         Toast.makeText(signup.this, "Successfully Registered", Toast.LENGTH_SHORT).show();
                                                     } else {
                                                         Toast.makeText(signup.this, "database error" + databaseError.toString(), Toast.LENGTH_SHORT).show();
-                                                    }
+                                                    }*/
                                                 }
                                             });
-                                            pd.setMessage("Successfully Registered");
+                                          //pd.setMessage("Successfully Registered");
                                             pd.hide();
-                                            startActivity(new Intent(signup.this,NavigationDrawer.class));
+                                            startActivity(new Intent(signup.this,OTPCheck.class));
                                             finish();
 
                                         }

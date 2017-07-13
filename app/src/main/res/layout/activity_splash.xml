@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:id="@+id/pic"
         android:scaleType="fitXY"
-        android:src="@drawable/pic"/>
+        android:src="@drawable/splash"/>
     <TextView
         android:id="@+id/fullscreen_content"
         android:layout_width="match_parent"
