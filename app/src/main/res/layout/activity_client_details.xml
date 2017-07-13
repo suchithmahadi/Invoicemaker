@@ -91,6 +91,7 @@
                 android:background="@android:color/transparent"
                 android:layout_height="wrap_content"
                 android:hint="Email"
+                android:id="@+id/clientemail"
                 android:padding="5dp"
                 android:textSize="15dp"
                 android:gravity="right"/>

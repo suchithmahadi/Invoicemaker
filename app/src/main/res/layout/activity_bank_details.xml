@@ -111,7 +111,7 @@
                 android:textColor="#fff"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:background="@drawable/button"
-
+                android:id="@+id/savebank"
                 android:textStyle="bold"/>
 
 

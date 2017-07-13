@@ -28,17 +28,20 @@ public class AddItem extends AppCompatActivity {
         amt=(TextView)findViewById(R.id.amt);
 
 
-        description=descrip.getText().toString();
-        HSNcode=HSN.getText().toString();
-        unitcost=cost.getText().toString();
-        quantity=quant.getText().toString();
-        amount=amt.getText().toString();
+
 
 
         Button save=(Button)findViewById(R.id.save);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                description=descrip.getText().toString();
+                HSNcode=HSN.getText().toString();
+                unitcost=cost.getText().toString();
+                quantity=quant.getText().toString();
+                amount=amt.getText().toString();
+
                 Intent i=new Intent();
                 i.putExtra("description",description);
                 i.putExtra("HSNcode",HSNcode);
@@ -46,16 +49,10 @@ public class AddItem extends AppCompatActivity {
                 i.putExtra("quantity",quantity);
                 i.putExtra("amount",amount);
                 setResult(2,i);
+
                 finish();
             }
         });
-        Intent i=new Intent();
-        i.putExtra("description",description);
-        i.putExtra("HSNcode",HSNcode);
-        i.putExtra("unitcost",unitcost);
-        i.putExtra("quantity",quantity);
-        i.putExtra("amount",amount);
-        setResult(1,i);
 
 
 

@@ -17,13 +17,14 @@ public class InvoiceGenerate extends AppCompatActivity {
  static TextView dateString;
     String bank,ifsccode,accholder,accno;
     String description,HSNcode,unitcost,quantity,amount;
-
+    String Name,Phone,Email,Address;
+    TextView ClientDetails,addItem,bank_details;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.invoice_gen);
         dateString=(TextView)findViewById(R.id.textdate);
-        TextView bank_details=(TextView)findViewById(R.id.bank);
+         bank_details=(TextView)findViewById(R.id.bank);
         bank_details.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -31,7 +32,7 @@ public class InvoiceGenerate extends AppCompatActivity {
                 startActivityForResult(intent,1);
             }
         });
-        TextView addItem=(TextView)findViewById(R.id.addItem);
+         addItem=(TextView)findViewById(R.id.addItem);
         addItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,11 +42,11 @@ public class InvoiceGenerate extends AppCompatActivity {
             }
         });
 
-        TextView ClientDetails =(TextView)findViewById(R.id.client_details);
+         ClientDetails =(TextView)findViewById(R.id.client_details);
         ClientDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(getApplicationContext(), com.example.adity.invoicemaker.ClientDetails.class);
+                Intent intent=new Intent(getApplicationContext(),ClientDetails.class);
                 startActivityForResult(intent,3);
 
             }
@@ -115,6 +116,8 @@ public class InvoiceGenerate extends AppCompatActivity {
             ifsccode=data.getStringExtra("ifsc_code");
             accholder=data.getStringExtra("account_holder");
             accno=data.getStringExtra("account_number");
+            bank_details.setText(accholder);
+            Toast.makeText(this, "bank "+accholder, Toast.LENGTH_SHORT).show();
             }
         if (resultCode == 2) {
             description= data.getStringExtra("description");
@@ -122,11 +125,20 @@ public class InvoiceGenerate extends AppCompatActivity {
             unitcost = data.getStringExtra("unitcost");
             quantity =data.getStringExtra("quantity");
             amount = data.getStringExtra("amount");
-            Toast.makeText(this, "hello", Toast.LENGTH_SHORT).show();
+            addItem.setText(description);
+            Toast.makeText(this, "Item", Toast.LENGTH_SHORT).show();
 
 
         }
         if (resultCode == 3) {
+            Name= data.getStringExtra("name");
+            Phone =data.getStringExtra("phone");
+            Email = data.getStringExtra("email");
+            Address =data.getStringExtra("address");
+            Toast.makeText(this, "Client", Toast.LENGTH_SHORT).show();
+            ClientDetails.setText(Name);
+
+
         }
         }
     }

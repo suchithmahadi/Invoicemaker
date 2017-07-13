@@ -3,6 +3,8 @@ package com.example.adity.invoicemaker;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 public class BankDetails extends AppCompatActivity {
@@ -20,17 +22,32 @@ public class BankDetails extends AppCompatActivity {
         accholdername=(EditText)findViewById(R.id.accholder);
         accnumber=(EditText)findViewById(R.id.accno);
 
-        bank=bankname.getText().toString();
-        ifsccode=ifsc.getText().toString();
-        accholder=accholdername.getText().toString();
-        accno=accnumber.getText().toString();
 
-        Intent i=new Intent();
-        i.putExtra("bank_name",bank);
-        i.putExtra("ifsc_code",ifsccode);
-        i.putExtra("account_holder",accholder);
-        i.putExtra("account_number",accno);
-        setResult(1,i);
+
+
+        Button save=(Button)findViewById(R.id.savebank) ;
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                bank=bankname.getText().toString();
+                ifsccode=ifsc.getText().toString();
+                accholder=accholdername.getText().toString();
+                accno=accnumber.getText().toString();
+
+
+                Intent i=new Intent();
+                i.putExtra("bank_name",bank);
+                i.putExtra("ifsc_code",ifsccode);
+                i.putExtra("account_holder",accholder);
+                i.putExtra("account_number",accno);
+                setResult(1,i);
+                finish();
+
+
+            }
+        });
 
 
     }
