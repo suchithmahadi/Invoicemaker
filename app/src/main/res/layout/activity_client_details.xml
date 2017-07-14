@@ -60,6 +60,7 @@
                 android:text="Phone"
                 android:textSize="15dp"
                 android:textStyle="bold" />
+
             <EditText
 
                 android:layout_weight="1"
@@ -94,14 +95,16 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/clientemail"
+                android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:gravity="right"
+                android:layout_height="wrap_content"
                 android:hint="Email"
+                android:id="@+id/clientemail"
                 android:padding="5dp"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:gravity="right"/>
+
 
 
         </LinearLayout>
@@ -126,14 +129,16 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/gst"
+                android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
-                android:gravity="right"
+                android:layout_height="wrap_content"
                 android:hint="GSTIN"
+                android:id="@+id/gst"
                 android:padding="5dp"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:gravity="right"/>
+
 
 
         </LinearLayout><LinearLayout
@@ -155,15 +160,16 @@
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/pan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:gravity="right"
-                android:hint="PAN"
-                android:padding="5dp"
-                android:textSize="15dp" />
+        <EditText
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:background="@android:color/transparent"
+            android:layout_height="wrap_content"
+            android:hint="PAN"
+            android:id="@+id/pan"
+            android:padding="5dp"
+            android:textSize="15dp"
+            android:gravity="right"/>
 
 
         </LinearLayout>
