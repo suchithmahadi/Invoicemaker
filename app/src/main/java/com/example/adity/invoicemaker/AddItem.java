@@ -60,9 +60,12 @@ public class AddItem extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus)
                 {
-                    Integer quanti=Integer.parseInt(quant.getText().toString());
-                    Float Cost=Float.parseFloat(cost.getText().toString());
-                    amt.setText(""+quanti*Cost);
+                        Integer quanti = Integer.parseInt(quant.getText().toString());
+                        Double Cost = Double.parseDouble(cost.getText().toString());
+                        Double l=(quanti*Cost);
+
+                        amt.setText("" + quanti * Cost);
+
                 }
             }
         });
@@ -73,9 +76,10 @@ public class AddItem extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if(!hasFocus)
                 {
-                    Integer quanti=Integer.parseInt(quant.getText().toString());
-                    Float Cost=Float.parseFloat(cost.getText().toString());
-                    amt.setText(""+quanti*Cost);
+                        Integer quanti = Integer.parseInt(quant.getText().toString());
+                        Double Cost = Double.parseDouble(cost.getText().toString());
+                        amt.setText("" + quanti * Cost);
+
                 }
             }
         });

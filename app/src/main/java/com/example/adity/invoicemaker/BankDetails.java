@@ -7,15 +7,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class BankDetails extends AppCompatActivity {
 
     EditText bankname,ifsc,accholdername,accnumber;
     String bank,ifsccode,accholder,accno;
+    Map<String,String> mp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bank_details);
-
+        mp=new HashMap<>();
 
         bankname=(EditText)findViewById(R.id.bankname);
         ifsc=(EditText)findViewById(R.id.IfSc);
@@ -35,6 +44,20 @@ public class BankDetails extends AppCompatActivity {
                 ifsccode=ifsc.getText().toString();
                 accholder=accholdername.getText().toString();
                 accno=accnumber.getText().toString();
+
+
+                DatabaseReference db= FirebaseDatabase.getInstance().getReference("Account Details");
+
+
+                mp.put("Ifsc Code",ifsccode);
+                mp.put("Account Holder",accholder);
+
+                db.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(bank).child(accno).setValue(mp, new DatabaseReference.CompletionListener() {
+                    @Override
+                    public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+
+                    }
+                });
 
                 Intent i=new Intent();
                 i.putExtra("bank_name",bank);

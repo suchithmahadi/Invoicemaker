@@ -1,6 +1,7 @@
 package com.example.adity.invoicemaker;
 
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +18,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 import static android.R.drawable.ic_delete;
@@ -32,6 +40,8 @@ public class AccPaymentDetails extends Fragment {
     RecyclerView rv;
     FloatingActionButton fab;
     ArrayList<ObjectAcc> arrayList;
+    String ifsc,bname,accnum,accname;
+    ProgressDialog pd;
     public AccPaymentDetails() {
         // Required empty public constructor
 
@@ -41,7 +51,16 @@ public class AccPaymentDetails extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         arrayList=new ArrayList<ObjectAcc>();
+        pd=new ProgressDialog(getActivity());
+        pd.setMessage("Please Wait ...");
+        pd.show();
+        arrayList.clear();
         adapter =new bankDetailsAdapter(getContext(),arrayList);
+
+       Read();
+
+
+
 
     }
 
@@ -55,16 +74,21 @@ public class AccPaymentDetails extends Fragment {
     @Override
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
         fab=(FloatingActionButton)getActivity().findViewById(R.id.fab) ;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         rv= (RecyclerView)getActivity().findViewById(R.id.list_item);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
+
         rv.setAdapter(adapter);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(getContext(),BankDetails.class);
+                arrayList.clear();
                 i.putExtra("Type","BankDetails");
                 startActivityForResult(i,6);
             }
@@ -122,8 +146,7 @@ public class AccPaymentDetails extends Fragment {
         if(resultCode == 5 ){
             Toast.makeText(getContext(), "RESULT", Toast.LENGTH_SHORT).show();
             ObjectAcc Ob= new ObjectAcc(data.getStringExtra("account_holder"),data.getStringExtra("bank_name"),data.getStringExtra("account_number"),data.getStringExtra("ifsc_code"));
-            arrayList.add(Ob);
-            adapter.notifyDataSetChanged();
+
         }
     }
 
@@ -137,4 +160,58 @@ public class AccPaymentDetails extends Fragment {
         }
 
     }
+
+
+    public void Read()
+    {
+        DatabaseReference db= FirebaseDatabase.getInstance().getReference("Account Details/"+ FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+        // String name,String bname,String acno,String ifsc
+
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot bank:dataSnapshot.getChildren())
+                {
+
+                    bname=bank.getKey();
+                    for(DataSnapshot accno:bank.getChildren())
+                    {
+                        accnum=accno.getKey();
+                        for(DataSnapshot details:accno.getChildren())
+                        {
+                            if(details.getKey().equals("Ifsc Code"))
+                            {
+                                ifsc=details.getValue(String.class);
+                            }
+                            else if(details.getKey().equals("Account Holder"))
+                            {
+                                accname=details.getValue(String.class);
+                            }
+
+
+
+                        }
+
+                    }
+                    ObjectAcc obj=new ObjectAcc(accname,bname,accnum,ifsc);
+                    arrayList.add(obj);
+                    adapter.notifyDataSetChanged();
+
+                }
+
+
+
+                pd.hide();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(getActivity(), "error"+databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
 }
