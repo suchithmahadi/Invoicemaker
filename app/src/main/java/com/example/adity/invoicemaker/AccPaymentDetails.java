@@ -121,22 +121,20 @@ public class AccPaymentDetails extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == 5 ){
             Toast.makeText(getContext(), "RESULT", Toast.LENGTH_SHORT).show();
-           ObjectAcc Ob= new ObjectAcc(data.getStringExtra("bank_name"),data.getStringExtra("account_holder"),data.getStringExtra("account_number"));
+            ObjectAcc Ob= new ObjectAcc(data.getStringExtra("account_holder"),data.getStringExtra("bank_name"),data.getStringExtra("account_number"),data.getStringExtra("ifsc_code"));
             arrayList.add(Ob);
             adapter.notifyDataSetChanged();
         }
     }
 
     public class ObjectAcc{
-        public String accno,accname,bankname;
-        ObjectAcc(String A,String B,String C){
-            accname=B;
-            accno=A;
-            bankname=C;
+        public String accno,accname,bankname,ifsc_code;
+        ObjectAcc(String name,String bname,String acno,String ifsc){
+            accname=name;
+            accno=acno;
+            bankname=bname;
+            ifsc_code=ifsc;
         }
-        public String getBankname()
-        { return bankname;
 
-        }
     }
 }

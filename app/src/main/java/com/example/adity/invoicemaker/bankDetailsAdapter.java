@@ -19,7 +19,6 @@ import java.util.ArrayList;
 public class bankDetailsAdapter extends RecyclerView.Adapter<bankDetailsAdapter.ViewHolder> {
    public  Context mContext;
     ArrayList<AccPaymentDetails.ObjectAcc> objects;
-int index;
     bankDetailsAdapter(Context mContext, ArrayList<AccPaymentDetails.ObjectAcc> objects){
         this.mContext=mContext;
         this.objects=objects;
@@ -41,26 +40,25 @@ int index;
 
         holder.Acc_name.setText(obj.accname);
 
-
-    index=position;
+        holder.ifsc.setText(obj.ifsc_code);
 
     }
 
-public int getItemPosition(){
-    return index;
-}
+
     @Override
     public int getItemCount() {
         return objects.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-      public TextView Acc_name,Acc_no,bankName;
+      public TextView Acc_name,Acc_no,bankName,ifsc;
         public ViewHolder(View itemView) {
             super(itemView);
             Acc_name=(TextView)itemView.findViewById(R.id.ac_name);
             Acc_no=(TextView)itemView.findViewById(R.id.ac_no);
             bankName=(TextView)itemView.findViewById(R.id.bname);
+
+           ifsc=(TextView)itemView.findViewById(R.id.ifsc_code);
 
         }
     }
