@@ -3,6 +3,7 @@ package com.example.adity.invoicemaker;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,10 +13,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -25,6 +32,7 @@ import java.util.Map;
 
 public class InvoiceGenerate extends AppCompatActivity {
  static TextView dateString;
+    ProgressDialog pd;
     String bank,ifsccode,accholder,accno;
     String description,HSNcode,unitcost,quantity,amount;
     listadapt adapter;
@@ -32,8 +40,12 @@ public class InvoiceGenerate extends AppCompatActivity {
     String Name,Phone,Email,Address;
     TextView ClientDetails,bank_details;
     LinearLayout l;
+    DatabaseReference db;
     ListView lv;
+    EditText invoice;
+    int i=1;
     ArrayList<String [] > items=new ArrayList<>();
+    Map<String,String> mp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,13 +62,9 @@ public class InvoiceGenerate extends AppCompatActivity {
 
             }
         });
+         invoice=(EditText)findViewById(R.id.invoiceid);
         rv= (RecyclerView)findViewById(R.id.itemlist);
-
-
-
-      //  String[] data={"description","HSNcode","unitcost","quantity","amount"};
-
-        //items.add(data);
+        pd  =new ProgressDialog(InvoiceGenerate.this);
         adapter=new listadapt(InvoiceGenerate.this,items);
         rv.setLayoutManager(new LinearLayoutManager(InvoiceGenerate.this));
         rv.setAdapter(adapter);
@@ -80,12 +88,23 @@ public class InvoiceGenerate extends AppCompatActivity {
 
             }
         });
+
+        mp=new HashMap<>();
         dateString.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDatePickerDialog();
             }
         });
+
+        TextView save=(TextView)findViewById(R.id.saveinvoice);
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                uploadInvoice();
+            }
+        });
+
     }
 
 
@@ -150,15 +169,32 @@ public class InvoiceGenerate extends AppCompatActivity {
             }
         if (resultCode == 2) {
 
-            String [] a=new String[5];
-            a[0]= data.getStringExtra("description");
-            a[1] =data.getStringExtra("HSNcode");
-            a[2] = data.getStringExtra("unitcost");
-            a[3] =data.getStringExtra("quantity");
-            a[4] = data.getStringExtra("amount");
+            description= data.getStringExtra("description");
+            HSNcode=data.getStringExtra("HSNcode");
+            unitcost= data.getStringExtra("unitcost");
+            quantity =data.getStringExtra("quantity");
+            amount = data.getStringExtra("amount");
 
-            items.add(a);
+            items.add(new String[]{description,HSNcode,unitcost,quantity,amount});
             adapter.notifyDataSetChanged();
+            String invoiceid=invoice.getText().toString();
+
+            db=FirebaseDatabase.getInstance().getReference("Invoice/"+FirebaseAuth.getInstance().getCurrentUser().getUid()+"/"+invoiceid);
+            mp.put("Description",description);
+            mp.put("HSN code",HSNcode);
+            mp.put("unit cost",unitcost);
+            mp.put("quantity",quantity);
+            mp.put("amount",amount);
+
+            db.child("Items").child("Item "+i).setValue(mp, new DatabaseReference.CompletionListener() {
+                @Override
+                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+
+                }
+            });
+
+            i++;
+            mp.clear();
             Toast.makeText(this, "Item", Toast.LENGTH_SHORT).show();
 
         }
@@ -173,6 +209,49 @@ public class InvoiceGenerate extends AppCompatActivity {
 
         }
         }
+
+        public void uploadInvoice()
+        {
+
+            pd.setMessage("Generating Invoice");
+            pd.show();
+             db= FirebaseDatabase.getInstance().getReference("Invoice");
+
+
+            String invoiceid=invoice.getText().toString();
+
+            mp.put("Date_of_Invoice",dateString.getText().toString());
+         //   mp.put("Invoice_ID",invoiceid);
+            mp.put("Amount",amount);
+            mp.put("place_of_supply","india");
+
+            db.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(invoiceid).child("Details").setValue(mp, new DatabaseReference.CompletionListener() {
+                @Override
+                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+            if(databaseError==null)
+                pd.hide();
+                }
+            });
+
+
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
     }
 
 

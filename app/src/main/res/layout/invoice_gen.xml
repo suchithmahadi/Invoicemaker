@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content"
                     android:text="INV000"
                     android:focusableInTouchMode="true"
-                    android:id="@+id/edittext"/>
+                    android:id="@+id/invoiceid"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -342,6 +342,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Save"
+                android:id="@+id/saveinvoice"
                 android:padding="5dp"
                 />
             </LinearLayout>
