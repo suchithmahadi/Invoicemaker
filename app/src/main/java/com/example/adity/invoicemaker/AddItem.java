@@ -55,6 +55,30 @@ public class AddItem extends AppCompatActivity {
         });
 
 
+        cost.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus)
+                {
+                    Integer quanti=Integer.parseInt(quant.getText().toString());
+                    Float Cost=Float.parseFloat(cost.getText().toString());
+                    amt.setText(""+quanti*Cost);
+                }
+            }
+        });
+
+
+        quant.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(!hasFocus)
+                {
+                    Integer quanti=Integer.parseInt(quant.getText().toString());
+                    Float Cost=Float.parseFloat(cost.getText().toString());
+                    amt.setText(""+quanti*Cost);
+                }
+            }
+        });
 
 
 
