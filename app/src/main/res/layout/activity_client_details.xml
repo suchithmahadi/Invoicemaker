@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="#7fccc4"
@@ -21,18 +19,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            >
-
+            android:weightSum="2">
             <TextView
+                android:layout_weight="1"
                 android:id="@+id/Cname"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:padding="5dp"
                 android:text="Name"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
             <EditText
+                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:background="@android:color/transparent"
                 android:layout_height="wrap_content"
@@ -49,11 +48,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            >
+            android:weightSum="2">  >
 
             <TextView
+                android:layout_weight="1"
                 android:id="@+id/Cphone"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:padding="5dp"
@@ -61,6 +61,8 @@
                 android:textSize="15dp"
                 android:textStyle="bold" />
             <EditText
+
+                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:background="@android:color/transparent"
                 android:layout_height="wrap_content"
@@ -77,24 +79,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:weightSum="2"
             >
+
             <TextView
-                android:layout_width="wrap_content"
-                android:padding="5dp"
+
+                android:id="@+id/Email"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:padding="5dp"
                 android:text="Email"
                 android:textSize="15dp"
-                android:textStyle="bold"
-                android:gravity="left"/>
+                android:textStyle="bold" />
+
             <EditText
-                android:layout_width="match_parent"
-                android:background="@android:color/transparent"
-                android:layout_height="wrap_content"
-                android:hint="Email"
                 android:id="@+id/clientemail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:gravity="right"
+                android:hint="Email"
                 android:padding="5dp"
-                android:textSize="15dp"
-                android:gravity="right"/>
+                android:textSize="15dp" />
 
 
         </LinearLayout>

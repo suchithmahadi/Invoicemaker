@@ -1,20 +1,25 @@
 package com.example.adity.invoicemaker;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import static android.R.drawable.ic_delete;
 
 
 /**
@@ -29,6 +34,7 @@ public class AccPaymentDetails extends Fragment {
     ArrayList<ObjectAcc> arrayList;
     public AccPaymentDetails() {
         // Required empty public constructor
+
     }
 
     @Override
@@ -47,7 +53,7 @@ public class AccPaymentDetails extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         fab=(FloatingActionButton)getActivity().findViewById(R.id.fab) ;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -64,6 +70,49 @@ public class AccPaymentDetails extends Fragment {
             }
         });
 
+        ItemTouchHelper.SimpleCallback callback = new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.RIGHT ){
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                final int pos=viewHolder.getAdapterPosition();
+                ObjectAcc obj=arrayList.get(pos);
+                AlertDialog myQuittingDialogBox =new AlertDialog.Builder(getActivity())
+                        //set message, title, and icon
+                        .setTitle("Delete")
+                        .setMessage("Do you really want to delete the following bank details?\n\n"+"\t\tAccount Holder -"+obj.accname+"\n\t\tAccount Number -"
+            +obj.accno+"\n\t\tBank Name -"+obj.bankname)
+                        .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                //your deleting code
+                               arrayList.remove(pos);
+                               adapter.notifyDataSetChanged();
+                                Toast.makeText(getActivity(), "DELETED", Toast.LENGTH_SHORT).show();
+
+                                dialog.dismiss();
+                            }
+
+                        })
+
+                        .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                            adapter.notifyDataSetChanged();
+                                dialog.dismiss();
+
+                            }
+                        })
+                        .create();
+                myQuittingDialogBox.show();
+            }
+        };
+        ItemTouchHelper helper = new ItemTouchHelper(callback);
+        helper.attachToRecyclerView(rv);
 
     }
 
@@ -75,7 +124,6 @@ public class AccPaymentDetails extends Fragment {
            ObjectAcc Ob= new ObjectAcc(data.getStringExtra("bank_name"),data.getStringExtra("account_holder"),data.getStringExtra("account_number"));
             arrayList.add(Ob);
             adapter.notifyDataSetChanged();
-
         }
     }
 

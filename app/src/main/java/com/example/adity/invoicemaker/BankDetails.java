@@ -45,13 +45,11 @@ public class BankDetails extends AppCompatActivity {
                 Bundle extras = getIntent().getExtras();
                  String act = extras.getString("Type");
 
-// do something here if from activity a
                 if(act.equals("VENDOR")) {
                     setResult(1,i);
 
                 } else {
                     setResult(5,i);
-                    // / if from activity a
                 }
 
                 finish();
