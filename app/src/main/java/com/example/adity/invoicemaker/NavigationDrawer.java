@@ -54,10 +54,7 @@ public class NavigationDrawer extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         }
         else {
-            if (getFragmentManager().getBackStackEntryCount() >=0) {
-                getFragmentManager().popBackStack();
-            }
-            else {
+
 
             if (doubleBackToExitPressedOnce) {
                 super.onBackPressed();
@@ -73,7 +70,7 @@ public class NavigationDrawer extends AppCompatActivity
                     doubleBackToExitPressedOnce = false;
                 }
             }, 5000);
-        }
+
     }}
 
     @Override

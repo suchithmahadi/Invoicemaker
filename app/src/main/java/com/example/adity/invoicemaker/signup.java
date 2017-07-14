@@ -29,8 +29,6 @@ public class signup extends AppCompatActivity {
     CheckBox cb;
     Button signup;
     DatabaseReference db;
-    Map<String,String> mp=new HashMap<>();
-    ProgressDialog pd;
     FirebaseAuth mAuth;
     Boolean mAllowNavigation = true;
 
@@ -45,7 +43,6 @@ public class signup extends AppCompatActivity {
         phone = (EditText) findViewById(R.id.num);
         cb = (CheckBox) findViewById(R.id.cb);
         signup = (Button) findViewById(R.id.signup);
-        pd = new ProgressDialog(this);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -80,70 +77,10 @@ public class signup extends AppCompatActivity {
                     cb.setHint("please check this");
                 }
                 else {
-                    mp.put("Company", name);
-                    mp.put("Email", em);
-                    mp.put("Password", pwd);
-                    mp.put("Mobile number", no);
-                    mp.put("contact person",repass.getText().toString());
-                    pd.setMessage("Registering User");
-                    pd.show();
 
 
-                   mAuth.createUserWithEmailAndPassword(em, pwd).addOnCompleteListener(signup.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(name).build();
-
-                                mAuth.getCurrentUser().updateProfile(profileUpdates)
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                if (task.isSuccessful()) {
-                                                }
-                                            }
-                                        });
-                                mAuth.signInWithEmailAndPassword(em,pwd).addOnCompleteListener(signup.this,new OnCompleteListener<AuthResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
-                                        if(task.isSuccessful())
-                                        {
-                                            db = FirebaseDatabase.getInstance().getReference("Users");
-
-                                            db.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(mp, new DatabaseReference.CompletionListener() {
-                                                @Override
-                                                public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                                                    /*if (databaseError == null) {
-                                                        Toast.makeText(signup.this, "Successfully Registered", Toast.LENGTH_SHORT).show();
-                                                    } else {
-                                                        Toast.makeText(signup.this, "database error" + databaseError.toString(), Toast.LENGTH_SHORT).show();
-                                                    }*/
-                                                }
-                                            });
-                                          //pd.setMessage("Successfully Registered");
-                                            pd.hide();
-                                            startActivity(new Intent(signup.this,OTPCheck.class));
-                                            finish();
-
-                                        }
-                                        else {
-                                            Toast.makeText(signup.this, ""+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                        }
-
-
-                                    }
-                                });
-
-                            }
-                            else
-                            {
-                                pd.hide();
-                                Toast.makeText(signup.this, "Could not Register " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-
-                        }
-                    });
-
+                    startActivity(new Intent(signup.this,OTPCheck.class).putExtra("number",no).putExtra("company_name",name).putExtra("Email",em).putExtra("Contact_person",repass.getText().toString()).putExtra("password",pwd));
+                    finish();
 
                 }
             }

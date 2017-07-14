@@ -35,5 +35,5 @@ public class CustomListAdapter extends ArrayAdapter<String> {
         extratxt.setText(itemname[position]);
         return rowView;
 
-    };
+    }
 }

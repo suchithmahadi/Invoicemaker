@@ -5,20 +5,35 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class InvoiceGenerate extends AppCompatActivity {
  static TextView dateString;
     String bank,ifsccode,accholder,accno;
     String description,HSNcode,unitcost,quantity,amount;
+    listadapt adapter;
+    RecyclerView rv;
     String Name,Phone,Email,Address;
-    TextView ClientDetails,addItem,bank_details;
+    TextView ClientDetails,bank_details;
+    LinearLayout l;
+    ListView lv;
+    ArrayList<String [] > items=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +50,19 @@ public class InvoiceGenerate extends AppCompatActivity {
 
             }
         });
-         addItem=(TextView)findViewById(R.id.addItem);
-        addItem.setOnClickListener(new View.OnClickListener() {
+        rv= (RecyclerView)findViewById(R.id.itemlist);
+
+
+
+      //  String[] data={"description","HSNcode","unitcost","quantity","amount"};
+
+        //items.add(data);
+        adapter=new listadapt(InvoiceGenerate.this,items);
+        rv.setLayoutManager(new LinearLayoutManager(InvoiceGenerate.this));
+        rv.setAdapter(adapter);
+
+         l=(LinearLayout) findViewById(R.id.linearLayout4);
+        l.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(getApplicationContext(),AddItem.class);
@@ -123,14 +149,17 @@ public class InvoiceGenerate extends AppCompatActivity {
             Toast.makeText(this, "bank "+accholder, Toast.LENGTH_SHORT).show();
             }
         if (resultCode == 2) {
-            description= data.getStringExtra("description");
-            HSNcode =data.getStringExtra("HSNcode");
-            unitcost = data.getStringExtra("unitcost");
-            quantity =data.getStringExtra("quantity");
-            amount = data.getStringExtra("amount");
-            addItem.setText(description);
-            Toast.makeText(this, "Item", Toast.LENGTH_SHORT).show();
 
+            String [] a=new String[5];
+            a[0]= data.getStringExtra("description");
+            a[1] =data.getStringExtra("HSNcode");
+            a[2] = data.getStringExtra("unitcost");
+            a[3] =data.getStringExtra("quantity");
+            a[4] = data.getStringExtra("amount");
+
+            items.add(a);
+            adapter.notifyDataSetChanged();
+            Toast.makeText(this, "Item", Toast.LENGTH_SHORT).show();
 
         }
         if (resultCode == 3) {

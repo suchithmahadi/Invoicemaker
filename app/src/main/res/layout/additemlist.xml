@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginTop="5dp"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="Description :- "
+        />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/description"
+            />
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content">
+
+           <LinearLayout
+               android:layout_width="100dp"
+               android:orientation="vertical"
+               android:layout_height="wrap_content">
+               <TextView
+                   android:layout_width="100dp"
+                   android:layout_height="wrap_content"
+                   android:textStyle="bold"
+                   android:text="HSN code :-" />
+               <TextView
+                   android:layout_width="100dp"
+                   android:layout_height="wrap_content"
+                   android:id="@+id/hsn"/>
+
+           </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="90dp"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Unit cost :-"
+                    />
+                <TextView
+                    android:layout_width="90dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/Unit_cost"/>
+                </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="Quantity :-"
+                    />
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/quantity"/>
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="100dp"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textStyle="bold"
+                    android:text="Amount :-"
+                    android:layout_height="wrap_content" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:id="@+id/amt"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>
