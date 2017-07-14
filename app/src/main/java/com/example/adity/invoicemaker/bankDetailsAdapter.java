@@ -57,8 +57,7 @@ public class bankDetailsAdapter extends RecyclerView.Adapter<bankDetailsAdapter.
             Acc_name=(TextView)itemView.findViewById(R.id.ac_name);
             Acc_no=(TextView)itemView.findViewById(R.id.ac_no);
             bankName=(TextView)itemView.findViewById(R.id.bname);
-
-           ifsc=(TextView)itemView.findViewById(R.id.ifsc_code);
+            ifsc=(TextView)itemView.findViewById(R.id.ifsc_code);
 
         }
     }
