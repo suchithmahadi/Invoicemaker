@@ -53,6 +53,11 @@ public class NavigationDrawer extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            if (getFragmentManager().getBackStackEntryCount() > 0) {
+                getFragmentManager().popBackStack();
+            }
+            else {
+
             if (doubleBackToExitPressedOnce) {
                 super.onBackPressed();
                 return;
@@ -68,7 +73,7 @@ public class NavigationDrawer extends AppCompatActivity
                 }
             }, 5000);
         }
-    }
+    }}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

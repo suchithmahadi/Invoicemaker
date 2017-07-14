@@ -36,13 +36,24 @@ public class BankDetails extends AppCompatActivity {
                 accholder=accholdername.getText().toString();
                 accno=accnumber.getText().toString();
 
-
                 Intent i=new Intent();
                 i.putExtra("bank_name",bank);
                 i.putExtra("ifsc_code",ifsccode);
                 i.putExtra("account_holder",accholder);
                 i.putExtra("account_number",accno);
-                setResult(1,i);
+
+                Bundle extras = getIntent().getExtras();
+                 String act = extras.getString("Type");
+
+// do something here if from activity a
+                if(act.equals("VENDOR")) {
+                    setResult(1,i);
+
+                } else {
+                    setResult(5,i);
+                    // / if from activity a
+                }
+
                 finish();
 
 

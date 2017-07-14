@@ -29,7 +29,10 @@ public class InvoiceGenerate extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(getApplicationContext(),BankDetails.class);
+                intent.putExtra("Type","VENDOR");
+
                 startActivityForResult(intent,1);
+
             }
         });
          addItem=(TextView)findViewById(R.id.addItem);

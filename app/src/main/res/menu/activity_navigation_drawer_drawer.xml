@@ -17,7 +17,8 @@
             android:title="Vendors" />
 
     <item android:title="Contact Us"
-        android:id="@+id/contactus" />
+        android:id="@+id/contactus"
+        android:icon="@drawable/ic_action_contactus"/>
 
     <item
         android:id="@+id/referp"
