@@ -92,6 +92,7 @@ public class InvoiceGenerate extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(getApplicationContext(),ClientDetails.class);
+                intent.putExtra("Type","Vendor");
                 startActivityForResult(intent,3);
 
             }
