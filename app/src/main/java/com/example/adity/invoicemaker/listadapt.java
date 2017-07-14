@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,8 @@ public class listadapt extends RecyclerView.Adapter<listadapt.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
+
+        Toast.makeText(mContext, "hello", Toast.LENGTH_SHORT).show();
         String[] a=objects.get(position);
 
         holder.description.setText(a[0]);

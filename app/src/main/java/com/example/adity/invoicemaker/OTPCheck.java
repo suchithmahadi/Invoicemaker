@@ -38,10 +38,11 @@ String sms="";
     TextView t;
     String result=" ";
     URL url,urlverify;
-    String phoneNumber="9582738120";
+    String phoneNumber="";
     String test=" ",Details=" ",verifyResult,otp=" ",test1=" ",Details1=" ";
     ProgressDialog pd;
     DatabaseReference db;
+    Bundle b;
     FirebaseAuth mAuth=FirebaseAuth.getInstance();
     Map<String,String> mp=new HashMap<>();
 
@@ -49,11 +50,16 @@ String sms="";
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otpcheck);
+        b=getIntent().getExtras();
+        phoneNumber=b.getString("number");
+
         editText=(EditText)findViewById(R.id.OTP);
         url= NetworkUtils.buildUrl(phoneNumber);
         //getSupportLoaderManager().initLoader(GITHUB_SEARCH_LOADER, null, this);
         new SendOTP().execute();
         Button submit=(Button)findViewById(R.id.submit);
+
+
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,7 +124,7 @@ String sms="";
                     pd.setMessage("Registering User");
                     pd.show();
 
-                    Bundle b=getIntent().getExtras();
+
                    final String em= b.getString("Email");
                    final String pwd=b.getString("password");
 
