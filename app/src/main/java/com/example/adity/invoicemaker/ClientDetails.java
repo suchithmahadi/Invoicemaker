@@ -9,8 +9,8 @@ import android.widget.EditText;
 
 public class ClientDetails extends AppCompatActivity {
 
-    EditText name,phone,email,addline,addline2,addline3;
-    String Name,Phone,Email,Address;
+    EditText name,phone,email,addline,addline2,addline3,GSTIN,PAN_NO;
+    String Name,Phone,Email,Address,pan_no,gstin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,8 +23,8 @@ public class ClientDetails extends AppCompatActivity {
         addline=(EditText)findViewById(R.id.Address1);
         addline2=(EditText)findViewById(R.id.Address2);
         addline3=(EditText)findViewById(R.id.Address3);
-
-
+        GSTIN=(EditText)findViewById(R.id.gst);
+        PAN_NO=(EditText)findViewById(R.id.pan);
 
         Button save=(Button)findViewById(R.id.buttonclient) ;
         save.setOnClickListener(new View.OnClickListener() {
@@ -36,14 +36,17 @@ public class ClientDetails extends AppCompatActivity {
                 Phone=phone.getText().toString();
                 Email=email.getText().toString();
                 Address=addline.getText().toString()+"\n"+addline2.getText().toString()+"\n"+addline3.getText().toString();
+                pan_no=PAN_NO.getText().toString();
+                gstin=GSTIN.getText().toString();
 
                 Intent i=new Intent();
                 i.putExtra("name",Name);
                 i.putExtra("phone",Phone);
                 i.putExtra("email",Email);
                 i.putExtra("address",Address);
+                i.putExtra("gstin",gstin);
+                i.putExtra("pan",pan_no);
                 setResult(3,i);
-
 
                 finish();
 

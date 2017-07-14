@@ -16,12 +16,6 @@
             android:background="#ffff"
             android:id="@+id/linearLayout2">
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Preview"
-                android:id="@+id/previewbutton"
-                />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -58,7 +52,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Client"
+                android:text="Vendor"
                 android:textStyle="bold"
                 android:textSize="20dp"/>
 
@@ -281,61 +275,64 @@
                     android:hint="Due on receipt" />
             </LinearLayout>
         </LinearLayout>
-<LinearLayout
-    android:layout_marginTop="20dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:weightSum="2"
-    android:background="#cbeae7"
-    android:layout_below="@+id/linearLayout6"
-    android:id="@+id/linearLayout10">
 
-    <ImageView
-        android:id="@+id/SEAL"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="#fff"/>
         <LinearLayout
-           android:layout_marginLeft="5dp"
-            android:layout_weight="1"
+            android:id="@+id/linearLayout10"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="5dp"
-            android:id="@+id/linearLayout7"
-            android:background="#ffff"
-            android:weightSum="3">
+            android:layout_height="150dp"
+            android:layout_below="@+id/linearLayout6"
+            android:layout_marginTop="20dp"
+            android:background="#cbeae7"
+            android:orientation="horizontal"
+            android:weightSum="2">
+            <ImageView
+               android:layout_weight="1"
+                android:id="@+id/SEAL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#fff">
+                </ImageView>
+              <LinearLayout
+                android:id="@+id/linearLayout7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="#ffff"
+                android:orientation="vertical"
+                android:padding="5dp"
+                android:weightSum="3">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Email"
-                android:gravity="center"
-                android:padding="5dp"
-                android:textColor="@color/colorPrimary"/>
-            <TextView
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:padding="5dp"
-                android:layout_height="wrap_content"
-                android:text="Share"
-                android:gravity="center"
-                android:textColor="@color/colorPrimary"/>
-            <TextView
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="History"
-                android:padding="5dp"
-                android:gravity="center"
-                android:textColor="@color/colorPrimary"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Email"
+                    android:textColor="@color/colorPrimary" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Share"
+                    android:textColor="@color/colorPrimary" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="History"
+                    android:textColor="@color/colorPrimary" />
+
+            </LinearLayout>
 
         </LinearLayout>
-
-</LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -345,7 +342,6 @@
             android:layout_below="@+id/linearLayout10"
             android:id="@+id/linearLayout8"
             >
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -363,7 +359,17 @@
                 android:padding="5dp"
                 />
             </LinearLayout>
-        </LinearLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Preview"
+            android:id="@+id/previewbutton"
+            android:background="@drawable/button"
+            android:textColor="#fff"
+            android:layout_marginBottom="5dp"
+            />
+
+    </LinearLayout>
     </ScrollView>
 
  
